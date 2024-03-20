@@ -1,0 +1,361 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}Event-details{% endblock title %}
+{% block content %}
+
+{% if messages %}
+ {% for message in messages %}
+	<script>
+		alert('{{ message }}');
+	</script>
+ {% endfor %}
+{% endif %}
+
+    		<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url({% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %});">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">event single</span>
+									<h2 class="big-title">harmoni <strong>event details</strong></h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="{% url 'index' %}" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item"><a href="{% url 'event' %}" class="breadcrumb-link">Events</a></li>
+										<li class="breadcrumb-item active" aria-current="page">{{event.event_name|truncatewords:5}}</li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+
+
+
+
+
+		<!-- event-details-section - start
+		================================================== -->
+		<section id="event-details-section" class="event-details-section sec-ptb-100 clearfix">
+			<div class="container">
+				<div class="row">
+
+					<!-- col - event-details - start -->
+					<div class="col-lg-8 col-md-12 col-sm-12">
+
+						<!-- event-details - start -->
+						<div class="event-details mb-80">
+
+							<div class="event-title mb-30">
+								<span class="tag-item">
+									<i class="fas fa-bookmark"></i>
+									Featured Event
+								</span>
+								<h2 class="event-title">{{event.company_id.name}}'s <strong>{{event.event_name}}</strong></h2>
+							</div>
+
+							<!-- <div id="event-details-carousel" class="event-details-carousel owl-carousel owl-theme"> -->
+							<div>
+								<div class="item mb-30">
+									<center><img src="{{event.company_id.companyLogo_path.url}}" alt="Image_not_found" style="height: 140px; width: 140px;" /></center>
+								</div>
+							<!-- </div> -->
+
+							<div class="event-info-list ul-li clearfix mb-50">
+								<ul>
+									<li style="height: 94px;">
+										<span class="icon">
+											<i class="far fa-calendar"></i>
+										</span>
+										<div class="event-content">
+											<small class="event-title">Event Date</small>
+											<h3 class="event-date">{{event.start_datetime | date}}</h3>
+										</div>
+									</li>
+									<li style="height: 94px;">
+										<span class="icon">
+											<i class="far fa-clock"></i>
+										</span>
+										<div class="event-content">
+											<small class="event-title">Event Time</small>
+											<h3 class="event-date">{{event.start_datetime | time}} to {{event.end_datetime | time}}</h3>
+										</div>
+									</li>
+									<li style="height: 94px;">
+										<span class="icon">
+											<i class="fas fa-map-marker-alt"></i>
+										</span>
+										<div class="event-content">
+											<small class="event-title">Event City</small>
+											<h3 class="event-date">{{event.city_id}}</h3>
+										</div>
+									</li>
+								</ul>
+							</div>
+							</div>
+		
+							<hp class="black-color mb-30">
+								<strong>Event Description : </strong><br><br>
+								{{event.description | safe}}
+							</p>
+
+							{% comment %} <p class="black-color m-0">
+								Lorem ipsum dollor site amet the best  consectuer diam adipiscing elites sed diam nonummy nibh the euismod tincidunt ut laoreet dolore magna aliquam erat volutpat insignia the consectuer adipiscing elit. 
+							</p> {% endcomment %}
+
+						</div>
+						<!-- event-details - end -->
+
+						{% if workhands_feedback %}
+							{% for i in workhands_feedback %}
+								{% now "Y-m-d H:i:s" as today %}
+								{% with event_end_date=event.end_datetime|date:"Y-m-d H:i:s" %}
+									{% if event_end_date < today %}
+									<!-- reviewer-comment-wrapper - start -->
+									<div class="reviewer-comment-wrapper mb-30 clearfix">
+
+										<div class="section-title text-left mb-50">
+											<h2 class="big-title">Event <strong>Feedbacks</strong></h2>
+										</div>
+
+										<div class="comment-bar clearfix">
+											<div class="admin-image">
+												<img src="{{ i.workhand_id.profilePic_path.url }}" alt="Image_not_found" style="height:100%; width:100%;">
+											</div>
+											<div class="comment-content">
+												<div class="admin-name mb-15">
+													<div class="rateing-star ul-li clearfix">
+														<ul>
+														{% for workhands in Event_Registration_info %}
+															{% if workhands.workhand_id == i.workhand_id %}
+																{% for star in '12345' %}
+																	{% if workhands.rating >= forloop.counter0|add:1 %}
+																		<li class="rated"><i class="fas fa-star"></i></li>
+																	{% else %}
+																		<li class=""><i class="fas fa-star"></i></li>
+																	{% endif %}
+																{% endfor %}
+															{% endif %}
+														{% endfor %}
+														</ul>
+													</div>
+													<div class="name">
+														<a href="#!">{{ i.workhand_id.User_id }}</a>
+													</div>
+												</div>
+												<div class="comment-text">
+													<p class="mb-30">
+														{{i.feedback}}
+													</p>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<!-- reviewer-comment-wrapper - end -->
+										{% endif %}
+									{% endwith %}
+							{% endfor %}
+						{% endif %}
+
+
+						<!-- comment-form - start -->
+						<div class="comment-form clearfix">		
+						{% if not already_feedback %}				
+						{% if feedback %}
+							{% now "Y-m-d H:i:s" as today %}
+								{% with event_end_date=event.end_datetime|date:"Y-m-d H:i:s" %}
+									{% if event_end_date < today %}
+							<div class="section-title text-left mb-50" id="feedback">
+								<h2 class="big-title">write Your <strong>feedback</strong></h2>
+							</div>
+							<div class="form-wrapper">
+								<form action="{% url 'feedback' %}" method="POST">
+									<div class="row">
+										{% csrf_token %}
+										<!-- form-item - start -->
+										<div class="col-lg-4 col-md-6 col-sm-12">
+										<label for="" style="color:#FFBE30"><strong>User Name:</strong></label>
+											<div class="form-item mb-30">
+												<input type="text" name="name" placeholder="Your Name"  value="{{workhand.User_id}}" disabled>
+											</div>
+										</div>
+										<!-- form-item - end -->
+
+										<!-- form-item - start -->
+										<div class="col-lg-4 col-md-6 col-sm-12">
+										<label for="" style="color:#FFBE30"><strong>E-mail Address:</strong></label>
+											<div class="form-item mb-30">
+												<input type="email" name="email" placeholder="Your Email Address" value="{{workhand.email}}" disabled>
+												<input type="number" value={{event.id}} name="event_id" hidden>
+											</div>
+										</div>
+										<!-- form-item - end -->
+
+										<!-- form-item - start -->
+										<div class="col-lg-4 col-md-12 col-sm-12">
+										<label for="" style="color:#FFBE30"><strong>Phone Number:</strong></label>
+											<div class="form-item mb-30">
+												<input type="tel" name="phone" placeholder="Your Phone" value="{{workhand.contact_number}}" disabled>
+												<input type="number" value={{workhand.id}} name="workhand_id" hidden>
+											</div>
+										</div>
+										<!-- form-item - end -->
+
+										<!-- form-item - start -->
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="mb-30">
+												<textarea name="feedback" placeholder="Your Comment" required></textarea>
+											</div>
+											<button type="submit" class="custom-btn">SUBMIT NOW</button>
+										</div>
+										<!-- form-item - end -->
+									</div>
+								</form>
+							</div>
+								{% endif %}
+							{% endwith %}
+						{% endif %}
+						{% endif %}	
+						</div>
+						<!-- comment-form - end -->
+
+					</div>
+					<!-- col - event-details - end -->
+
+					<!-- sidebar-section - start -->
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="sidebar-section">
+								
+							<!-- location-wrapper - start -->
+							<div class="location-wrapper mb-0">
+								<div class="title-wrapper">
+									<span class="icon">
+										<i class="fas fa-map-marker-alt"></i>
+									</span>
+									<div class="title-content">
+										<small>Event Location</small>
+										<h5><b>{{event.street_address}}</b>	</h5>
+									</div>
+								</div>
+							<!-- spacial-event-wrapper - end -->
+
+								<div class="location-info-list ul-li-block clearfix">
+									<span class="area-name">{{event.city_id}} , {{event.state_id}}</span>
+									<ul>
+										<li><i class="fas fa-arrow-circle-right"></i> Category : <strong>{{event.event_subcategory_id}}</strong></li>
+										<li><i class="fas fa-arrow-circle-right"></i> Event Start : {{event.start_datetime | date}}</li>
+										<li><i class="fas fa-arrow-circle-right"></i> Event End   : {{event.end_datetime | date}}</li>
+										<li><i class="fas fa-arrow-circle-right"></i> Total Seat : <strong>{{event.total_workhand}}</strong></li>
+										<li><i class="fas fa-arrow-circle-right"></i> From <strong>{{event.start_datetime | time}}</strong> to <strong>{{event.end_datetime | time}}</strong> (IND)</li>
+									</ul>
+								</div>
+
+								<div class="button">
+									{% comment %} <a href="#!" class="custom-btn">ADD TO MY CALENDAR</a> {% endcomment %}
+								</div>
+
+								<!-- spacial-event-wrapper - start -->
+							<div class="spacial-event-wrapper text-center" style="background-image: url({% static 'assets/images/spacial-event-bg.jpg' %});">
+								<div class="overlay-black">
+									<p class="sub-title white-color mb-30" style="font-size:175%;"><strong>{{event.start_datetime | date}}</strong></p>
+									<h2 class="title-large white-color mb-30">
+										{{event.city_id}}
+										<strong class="yellow-color">{{event.event_subcategory_id}}</strong>
+									</h2>
+
+									{% if not user.is_staff %}
+										{% if already_registered %}
+											<button class="btn btn-success" style="color: white;" disabled>Already Registered</button>
+										{% else %}
+											{% now "Y-m-d H:i:s" as today %}
+											
+												{% with event_start_date=event.start_datetime|date:"Y-m-d H:i:s" %}
+													{% if event_start_date > today %}
+														<a href="/event-register/{{event.slug}}" class="custom-btn">Register Now</a>
+													{% elif event_start_date <= today %}
+														<button class="btn btn-secondary" style="color: #FFBE30;" disabled>Registration Ended</button>
+													{% else %}
+														<p>Error: Invalid date comparison</p>
+													{% endif %}
+												{% endwith %}
+										{% endif %}
+									{% endif %}
+								</div>
+							</div>
+
+							<!-- spacial-event-wrapper - end -->
+								<div class="title-wrapper">
+									<small class="up-arrow-icon">
+										<i class="fas fa-chevron-circle-up"></i>
+									</small>
+									<span class="icon">
+										<i class="fas fa-link"></i>
+									</span>
+									<div class="title-content">
+										<small>contact information</small>
+										<h3><a href="{% url 'company_profile' event.company_id.slug %}">{{event.company_id}} staff</a></h3>
+									</div>
+								</div>
+								<div class="contact-links ul-li-block clearfix">
+									<p class="black-color mb-30">
+										{{event.company_id.description | truncatewords:30 }}
+									</p>
+									<ul>
+										<li>
+											<a target="_blank" disable>
+												<span class="icon">
+													<svg xmlns="http://www.w3.org/2000/svg" width="17" height="14" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+													<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+													</svg>
+												</span>
+												{{event.company_id.contact_number}}
+											</a>
+										</li>
+										<li>
+											<a>
+												<span class="icon">
+													<i class="fas fa-link"></i>
+												</span>
+												{{event.company_id.email}}
+											</a>
+										</li>
+										<li>
+											<a href="#!" target="_blank">
+												<span class="icon">
+													<i class="fas fa-map-marker-alt"></i>
+												</span>
+												{{event.company_id.city_id}} , {{event.company_id.state_id}}
+											</a>
+										</li>
+									</ul>
+									<a href="{% url 'contact' %}" class="custom-btn">CONTACT US NOW</a>
+								</div>
+							</div>
+							<!-- location-wrapper - end -->
+						</div>
+					</div>
+					<!-- sidebar-section - end -->
+					
+				</div>
+			</div>
+		</section>
+		<!-- event-details-section - end
+		================================================== -->
+{% endblock content %}

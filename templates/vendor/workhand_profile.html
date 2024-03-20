@@ -1,0 +1,151 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}workhand profile{% endblock title %}
+{% block content %}
+
+<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url('{% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %}');">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">harmoni - event</span>
+									<h2 class="big-title"><strong>Workhand</strong> Profile</h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="{% url 'myevent' %}" class="breadcrumb-link">My Event</a></li>
+										<li class="breadcrumb-item active" aria-current="page">about us</li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+
+        <section id="award-section" class="award-section sec-ptb-100 clearfix">
+			<div class="container">
+				<div class="row">
+                    {% comment %} <div class="section-title mb-50">
+					<small class="sub-title">Workhand Profile </small>
+					<h5 class="big-title">the profile of <strong style="color:#ffbe30;">{{workhand.first_name}} {{workhand.last_name}}</strong></a></h5>
+				</div> {% endcomment %}
+					<!-- company-age - start -->
+					<div class="col-lg-6 col-md-12 col-sm-12">
+						<div class="company-age sr-fade1" style="background-image: url(' {% static 'assets/images/about/company-age-bg.jpg' %}');">
+							<div class="banner-img">
+								<img src="{{ workhand.profilePic_path.url }}" alt="Image_not_found" style="height:100%; width:100%;">
+							</div>
+						</div>
+					</div>
+					<!-- company-age - end -->
+
+					<div class="col-lg-6 col-md-12 col-sm-12">
+						<div class="contact-form form-wrapper text-center">
+                            <div class="form-item">
+							  <input type="text" name="first_name" style="color:black;" placeholder="First Name" value=" First Name : {{workhand.first_name}}" disabled>
+							</div>
+
+                            <br>
+
+                            <div class="form-item">
+							  <input type="text" name="last_name" style="color:black;" placeholder="Last Name" value=" Last Name : {{workhand.last_name}}" disabled>
+							</div>
+                            
+                            <br>
+                            <div class="form-item">
+							  <input type="email" name="email" placeholder="email" style="color:black;" value=" E-mail : {{workhand.email}}" disabled>
+							</div>
+
+                             <br>
+                            <div class="form-item">
+							  <input type="text" name="contact" placeholder="contact" style="color:black;" value=" Contact Number : {{workhand.contact_number}}" disabled>
+							</div> 
+                                
+                            <br>
+                            <div class="form-item">
+							  <input type="text" name="special-category" placeholder="special-category" style="color:black;" value=" Special Category : {{workhand.Workhand_category_id}}" disabled>
+							</div>
+                            
+                            <br>
+                            <div class="form-item">
+							  <input type="address" name="address" placeholder="street address" style="color:black;" value=" Street Address : {{workhand.street_address}}" disabled>
+							</div>
+                            
+                            <br>
+                            <div class="form-item">
+							  <input type="text" name="city" placeholder="City" style="color:black;" value=" City : {{workhand.city_id}}" disabled>
+							</div>
+                            
+                            <br>
+                            <div class="form-item">
+							  <input type="text" name="state" placeholder="state" style="color:black;" value=" State : {{workhand.state_id}}" disabled>
+							</div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+        <div class="container">
+            <div class="section-title mb-50">
+					<small class="sub-title"></small>
+					<h5 class="big-title"><strong>Past Events of <label style="color:#FFBE30;">{{workhand.first_name}} {{workhand.last_name}}</label></strong></h5>
+		    </div>
+            <div class="row">
+                <div class="order-summary-table table-responsive">
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="color:#FFBE30;">Event's Name</th>
+                                    <th scope="col" style="color:#FFBE30;">Workhand Category</th>
+                                    <th scope="col" style="color:#FFBE30;">Rating</th>
+                                    <th scope="col" style="color:#FFBE30;">Payment</th>
+                                    <th scopt="col"></th>
+                                </tr>
+                            </thead>										
+                            <tbody>
+                            {% for i in  workhand_events %}
+                                {% comment %} <form action={% url 'event_details' slug=i.slug %} method="POST"> {% endcomment %}
+                                <tr class="bg-gray-light">
+                                    <td style="color:black;"><strong><a href="/event-details/{{i.event_id.slug}}" style="color:black;">{{i.event_id | truncatechars:40}}</a></strong></td>
+                                    <td style="color:black;">{{i.event_workhand_id}}</td>
+                                    <td>
+                                    <div class="small-ratings">
+                                    {% for star in '12345' %}
+                                        {% if i.rating >= forloop.counter0|add:1 %}
+                                            <i class="fa fa-star" style="color:#fbc634 !important;"></i>
+                                        {% else %}
+                                            <i class="fa fa-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </div>
+                                    </td>
+                                    <td style="color:black; text-align:center;">{{i.event_workhand_id.price}}<td>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>	
+                        </table>
+                        <br>
+                </div>
+        </div>
+    </div>
+		<!-- award-section - end
+		================================================== -->
+
+{% endblock content %}

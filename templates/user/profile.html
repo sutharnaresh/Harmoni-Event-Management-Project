@@ -1,0 +1,188 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}My-Profile{% endblock title %}
+{% block content %}
+
+{% if messages %}
+ {% for message in messages %}
+	<script>
+		alert('{{ message }}');
+	</script>
+ {% endfor %}
+{% endif %}
+
+<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url('{% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %}');">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">Harmony Events</span>
+									<h2 class="big-title"> <strong>My</strong> Profile</h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item active"><a href="{% url 'index' %}" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item"> <a href="{% url 'profile' %}" aria-current="page">profile</a></li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+
+		<section id="contact-section" class="contact-section sec-ptb-100 clearfix">
+			<div class="container">
+
+				<!-- section-title - start -->
+				<div class="section-title mb-50">
+					<small class="sub-title">Profile Settings</small>
+					<h5 class="big-title">You can change your <strong style="color:#ffbe30;"> Profile</strong></a></h5>
+				</div>
+				<!-- section-title - end -->
+
+				<!-- contact-form - start -->
+				<div class="contact-form form-wrapper text-center">
+					<form action="{% url "update_profile" %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="row">
+
+						{% if user.is_staff %}
+						<div class="col-lg-12 col-md-12 col-sm-12" id = "company-name" >
+							{% comment %} <label for="">Company name</label> {% endcomment %}
+							<div class="form-item">
+							  <input name="company_name" type="text" placeholder="Company name" value="{{company.name}}">
+							</div>
+						</div>
+						{% else %}
+						<div class="col-lg-6 col-md-6 col-sm-12" id="first_name" style="display : block;">
+							{% comment %} <label for="">First Name</label> {% endcomment %}
+							<div class="form-item">
+							  <input type="text" name="first_name" placeholder="First Name" value="{{workhand.first_name}}">
+							</div>
+						</div>
+					
+						<div class="col-lg-6 col-md-6 col-sm-12"id="last_name" style="display : block;">
+							{% comment %} <label for="">Last Name</label> {% endcomment %}
+							<div class="form-item">
+							  <input type="text" name="last_name" placeholder="Last name" value={{workhand.last_name}}>
+							</div>
+						</div>
+						{% endif %}
+
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							{% comment %} <label for="">E-mail Address</label> {% endcomment %}
+							<div class="form-item">
+							  <input name="email" type="email" placeholder="Email Address" {% if user.is_staff %}value={{company.email}}{% else %}value={{workhand.email}}{% endif %} required>
+							</div>
+						</div>
+					
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							{% comment %} <label for="">Contact Number</label> {% endcomment %}
+							<div class="form-item">
+							  <input type="tel" class="no-arrow" name="contact_number" pattern="[0-9]{10}" placeholder="Phone number" {% if user.is_staff %}value={{company.contact_number}}{% else %}value={{workhand.contact_number}}{% endif %} required>
+							</div>
+						</div>
+
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							{% comment %} <label for="">Street Address</label> {% endcomment %}
+							<div class="form-item">
+							  <input type="text" name="street_address" placeholder="Street Address" {% if user.is_staff %}value="{{company.street_address}}"{% else %}value="{{workhand.street_address}}"{% endif %} required>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							{% comment %} <label for="">Choose State</label> {% endcomment %}
+							<div class="">
+							  <select name="state" id="state" class="form-item" style="max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px;">
+								{% for i in States %}
+									<option value="{{i.id}}" selected>{{i.state_name}}</option>
+								{% endfor %}
+								{% if user.is_staff %}
+								<option value = {{company.state_id.id}} selected>{{company.state_id}}</option>
+								{% else %}
+								<option value = {{workhand.state_id.id}} selected>{{workhand.state_id}}</option>
+								{% endif %}
+							  </select>
+							</div>
+						</div>
+						
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							{% comment %} <label for="">Choose City</label> {% endcomment %}
+						  <div class="">
+							<select name="city" id="city" class="form-item" style="max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px;">
+								{% if user.is_staff %}
+								<option value={{company.city_id.id}} selected>{{company.city_id}}</option>
+								{% else %}
+								<option value={{workhand.city_id.id}} selected>{{workhand.city_id}}</option>
+								{% endif %}
+							</select>
+						  </div>
+						</div>
+
+						{% if user.is_staff %}
+						<div class="col-lg-12 col-md-12 col-sm-12" id="Discriotion-field">
+							{% comment %} <label for="">Company Description</label> {% endcomment %}
+							<div class="form-item">
+								<textarea name="discription" placeholder="Discriotion About Company" >{{company.description}}</textarea>
+							</div>
+						</div>
+
+						<div class="col-lg-12 col-md-12 col-sm-12" id="additional-images-field">
+							<label for="file">Change Your Company Logo If You Want</label>
+						  <div class="form-item">
+							<input class="p-2" type="file" id="additional-images" name="company_logo" accept="image/png, image/jpeg" />
+						  </div>
+						</div>
+
+						{% else %}
+						<div class="col-lg-12 col-md-12 col-sm-12" id = "special-skill">
+							<div class="">
+								{% comment %} <label for="">Workhand Category</label> {% endcomment %}
+								<select name="workhand_category" id="workhand_category" class="form-item" style="max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px;">
+								  {% for i in Workhand_category %}
+									  <option value="{{i.id}}" selected>{{i.workhand_category_name}}</option>
+								  {% endfor %}
+								  <option value={{workhand.Workhand_category_id.id}} selected>{{workhand.Workhand_category_id}}</option>
+								</select>
+							  </div>
+						</div>
+
+						<div class="col-lg-12 col-md-12 col-sm-12" id="user_profile_pic">
+							<label for="file" class="sub-title">Change Your Profile Pic If You Want</label>
+							<div class="form-item">
+							  <input class="p-2" type="file" id="image" name="profile_image" accept="image/png, image/jpeg" />
+							</div>
+						</div>
+						{% endif %}
+						<h5><a href={% url "password_reset" %} class="site-link" style="padding-left:30px"> Click Here If You Want To change Your Password !!</a></h5>
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<button type="submit" class="custom-btn">Save Profile</button>
+						</div>
+
+					</div>
+					</form>
+				</div>
+		</section>
+		<script>
+			CKEDITOR.replace('id_description');  // Replace 'id_description' with the actual ID of your textarea
+		</script>
+		<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+        <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+
+{% endblock content%}

@@ -1,0 +1,264 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block title %}Add-Event{% endblock title %}Add-Event
+{% block content %}
+
+{% if messages %}
+ {% for message in messages %}
+	<script>
+		alert('{{ message }}');
+	</script>
+ {% endfor %}
+{% endif %}
+
+<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url('{% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %}');">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">{{user.username}} Company</span>
+									<h2 class="big-title">Make <strong>An Event</strong></h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="index-1.html" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item active" aria-current="page">contact us</li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+<!-- breadcrumb-section - end
+================================================== -->
+
+<!-- contact-section - start
+		================================================== -->
+		<section id="contact-section" class="contact-section sec-ptb-100 clearfix">
+			<div class="container">
+
+				<!-- section-title - start -->
+				<div class="section-title mb-50"> 
+					<h2 class="big-title">Add <strong>Your Event</strong></h2>
+				</div>
+				<!-- section-title - end -->
+
+				<!-- contact-form - start -->
+				<div class="contact-form form-wrapper text-center">
+					<form action="{% url 'addevent' %}" method="post">
+           {% csrf_token %}
+           {{ form.media }}
+						<div class="row">
+              
+              {% comment %} Choose this color if you want to show dropdown like other input field =   "color: #6c757d;" {% endcomment %}
+
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="">
+                    <select name="cat" id="cat" class="form-item" style="max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px;" required>
+                     <option value="" disabled selected>Choose Event Category</option>
+                        {% for i in Event_category %}
+                            <option value="{{i.id}}">{{i.event_category}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+              </div>
+
+
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="">
+                  <select name="subcat" id="subcat" class="form-item" style="max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px;" required>
+                    <option value="" disabled selected>Choose Event Subcategory</option>
+                  </select>
+                </div>
+              </div>
+
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<div class="form-item">
+									<input name="event_name" type="text" placeholder="Event Name" required>
+								</div>
+							</div>
+
+              <div class="col-lg-6 col-md-6 col-sm-6" id="" style="">
+                <h6><strong for="file">Starting Date & Time : </strong></h6>
+                  <div class="form-item">
+                    <input class="custom-input" name="start_datetime" type="datetime-local" id="start_datetime" style="padding-left: 25px;" required>
+                  </div>
+              </div>
+              
+              <div class="col-lg-6 col-md-6 col-sm-6" id="" style="">
+                <h6><strong for="file">Ending Date & Time : </strong></h6>
+                  <div class="form-item">
+                    <input class="custom-input" name="end_datetime" type="datetime-local" id="end_datetime" style="padding-left: 25px;" required>
+                  </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12">
+								<div class="form-item">
+									<input type="number" id="workhand_category" min="1" onchange="createDropdown()" placeholder="How many categories you need in event" required>
+								</div>
+							</div>
+
+                            
+              <div id="catContainer" class="col-lg-12 col-md-12 col-sm-12"></div>
+                            
+
+
+              {% comment %} <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-item">
+                    <input type="number" name="price" placeholder="Amount in rupees" step="any">
+                  </div>
+              </div> {% endcomment %}
+
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-item">
+                    <input type="text" name="street_address" placeholder="Street Address" required>
+                  </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="">
+								<select name="state" id="state" class="form-item" style="max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px;" required>
+									<option value="" disabled selected>Choose State</option>
+									{% for i in States %}
+										<option value="{{i.id}}">{{i.state_name}}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+              
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="">
+                  <select name="city" id="city" class="form-item" style="max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px;" required>
+                      <option value=0>Choose City</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12">
+              <h5><strong>Write about event description</strong></h5>
+								<div class="form-item">
+									<textarea name="description" id="description_box" class="ckeditor" placeholder="Enter your description here..." required></textarea>
+								</div>
+							</div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                  <button type="submit" id="button" class="custom-btn" data-toggle="modal" >Make An Event</button>
+              </div>
+						</div>
+					</form>
+				</div>
+				<!-- contact-form - end -->
+
+            <!-- java script for workhand dropdown and number_of_workhand field-->
+                <script>
+                    CKEDITOR.replace('id_description');  // Replace 'id_description' with the actual ID of your textarea
+                    function createDropdown() {
+                        // Get the selected number of cats
+                        var numberOfCats = document.getElementById("workhand_category").value;
+                    
+                        // Get the container div
+                        var catContainer = document.getElementById("catContainer");
+                    
+                        // Clear previous content
+                        catContainer.innerHTML = "";
+                    
+                        // Create dropdowns and input fields
+                        for (var i = 1; i <= numberOfCats; i++) {
+                            // Create a div for each pair
+                            var pairDiv = document.createElement("div");
+                            pairDiv.className = "row mb-3"; // Adjust classes as needed
+                    
+                            var dropdownDiv = document.createElement("div");
+                            dropdownDiv.className = "col-lg-4 col-md-4 col-sm-4"; // Adjust classes as needed
+                    
+                            var dropdown = document.createElement("select");
+                            dropdown.id = "catDropdown" + i;
+                            dropdown.className = "form-item";
+                            dropdown.name = "Workhand_categories";
+                            dropdown.style = "max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px; ";
+                            dropdown.required = true;
+                    
+                            var textboxDiv = document.createElement("div");
+                            textboxDiv.className = "col-lg-4 col-md-4 col-sm-4"; // Adjust classes as needed
+
+                            var priceBoxDiv = document.createElement("div");
+                            priceBoxDiv.className = "col-lg-4 col-md-4 col-sm-4"; // Adjust classes as needed
+                    
+                            var textbox = document.createElement("input");
+                            textbox.type = "number";
+                            textbox.id = "catTextbox" + i;
+                            textbox.name = "workhand_number";
+                            textbox.placeholder = "Enter number of workhand";
+                            textbox.className = "form-item";
+                            textbox.style = "max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px; ";
+                            textbox.required = true; // Add the required attribute
+
+                            var priceBox = document.createElement("input");
+                            priceBox.type = "number";
+                            priceBox.id = "catTextbox" + i;
+                            priceBox.name = "price";
+                            priceBox.placeholder = "Enter Price";
+                            priceBox.className = "form-item";
+                            priceBox.style = "max-width:100%; background-color: #f7f7f7; border-color: #f0f0f0; padding: 0px 25px; ";
+                            priceBox.required = true; // Add the required attribute
+                            
+                            var option = document.createElement("option");
+                            option.value = "";
+                            option.text = "Choose Workhand Category";
+                            option.disabled = true;
+                            option.selected = true;
+                            dropdown.appendChild(option);
+                    
+                            {% for i in Workhand_category %}
+                                var option = document.createElement("option");
+                                option.value = {{i.id}};
+                                option.text ="{{i.workhand_category_name}}";
+                                dropdown.appendChild(option);
+                            {% endfor %}
+                    
+                            // Append the dropdown and textbox to the div
+                            dropdownDiv.appendChild(dropdown);
+                            textboxDiv.appendChild(textbox);
+                            priceBoxDiv.appendChild(priceBox);
+                    
+                            // Append the div to the container
+                            pairDiv.appendChild(dropdownDiv);
+                            pairDiv.appendChild(textboxDiv);
+                            pairDiv.appendChild(priceBoxDiv);
+                            catContainer.appendChild(pairDiv);
+                        }
+                    }
+
+                    // JS for datetime field
+                    document.getElementById("end_datetime").addEventListener("input", function() {
+                      var startDateTime = new Date(document.getElementById("start_datetime").value);
+                      var endDateTime = new Date(this.value);
+                  
+                      if (endDateTime <= startDateTime) {
+                          alert("End datetime should be greater than start datetime");
+                      }
+                  });
+                </script>
+                <script src="{% static 'login/js/register.js' %}"></script>
+                <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+                <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+			</div>  
+		</section>
+<!-- contact-section - end
+================================================== -->
+
+{% endblock content %}

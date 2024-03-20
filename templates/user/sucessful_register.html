@@ -1,0 +1,70 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}register-sucessful{% endblock title %}
+{% block content %}
+<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url({% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %});">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">Register Sucessfull</span>
+									<h2 class="big-title"><strong>Congratulations!!</strong></h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="{% url 'index' %}" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item"><a href="{% url 'event' %}">Events</a></li>	
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+
+
+		<!-- error-section - start
+		================================================== -->
+		<section id="error-section" class="error-section sec-ptb-100 bg-gray-light clearfix">
+			<div class="container">
+				<div class="row justify-content-center">
+
+					<!-- error-content - start -->
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<img src="{% static 'assets/images/success/register_success.gif' %}" alt="My GIF" style="background-color: transparent; display: inline-block;">
+					</div>
+					<!-- error-content - end -->
+
+					<!-- error-content - start -->
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="error-content">
+							{% comment %} <h3 style="color:green;">Congratulations!!</h3> {% endcomment %}
+							<h3 style="color:#77B43F;">Registered Successfully</h3>
+							<p class="mb-30">"Congratulations! Your registration for the event has been successfully completed. We look forward to your participation and hope you have a rewarding experience at the upcoming event. Thank you for joining us!"</p>
+							<a href="{% url "index" %}" class="custom-btn">go back to home</a>
+						</div>
+					</div>
+					<!-- error-content - end -->
+					
+				</div>
+			</div>
+		</section>
+		<!-- error-section - end
+		================================================== -->	
+
+
+{% endblock content %}

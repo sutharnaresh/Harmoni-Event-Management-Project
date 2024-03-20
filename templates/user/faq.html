@@ -1,0 +1,206 @@
+{% extends "user/base.html" %}
+{% load static %}
+{% block title %}FAQ{% endblock title %}
+{% block content %}
+<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url({% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %});">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">harmoni events</span>
+									<h2 class="big-title">harmoni <strong>FAQ</strong></h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="{% url 'home' %}" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Frequently Ask Qusetion</li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+
+
+
+
+
+		<!-- faq-section - start
+		================================================== -->
+		<section id="faq-section" class="faq-section sec-ptb-100 clearfix">
+			<div class="container">
+
+				<!-- section-title - start -->
+				<div class="section-title mb-50">
+					<div class="row">
+						<div class="col-lg-8 col-md-12 col-sm-12">
+							<h2 class="big-title">about <strong>Us</strong></h2>
+						</div>
+						<div class="col-lg-4 col-md-12 col-sm-12">
+							<div class="text-right">
+								<a href="{% url 'contact' %}" class="custom-btn">Contact us</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- section-title - end -->
+
+				<!-- faq-content-wrapper - start -->
+				<div class="faq-content-wrapper mb-80">
+					<div class="row">
+
+						<!-- faq-accordion - start -->
+						<div class="col-lg-6 col-md-12 col-sm-12">
+							<div id="faq-accordion" class="faq-accordion">
+
+								<div class="card">
+									<div class="card-header" id="headingone">
+										<button class="btn collapsed" data-toggle="collapse" data-target="#collapseone" aria-expanded="true" aria-controls="collapseone">
+											<span>01.</span> How to join Harmoni Event Management?
+										</button>
+									</div>
+
+									<div id="collapseone" class="collapse" aria-labelledby="headingone" data-parent="#faq-accordion">
+										<div class="card-body">
+											<h3>answer</h3>
+											Bring people together. Harmoni gives you everything you need to host your best event yet.
+										</div>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header" id="headingtwo">
+										<button class="btn" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="false" aria-controls="collapsetwo">
+											<span>02.</span> How to make my own event?
+										</button>
+									</div>
+									<div id="collapsetwo" class="collapse show" aria-labelledby="headingtwo" data-parent="#faq-accordion">
+										<div class="card-body">
+											<h3>answer</h3>
+											First you need to verify that you are company and then in the myEvents link in the header there is a button called make an event you can click on that and can make your personalized event.
+										</div>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header" id="headingthree">
+										<button class="btn collapsed" data-toggle="collapse" data-target="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
+											<span>03.</span> What will company do after making the event?
+										</button>
+									</div>
+									<div id="collapsethree" class="collapse" aria-labelledby="headingthree" data-parent="#faq-accordion">
+										<div class="card-body">
+											<h3>answer</h3>
+											After making the event, workhands will register in that event and company will approve them by their rating.
+										</div>
+									</div>
+								</div>
+
+                                <div class="card">
+									<div class="card-header" id="headingthree">
+										<button class="btn collapsed" data-toggle="collapse" data-target="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
+											<span>04.</span> Who will be the users of our website?
+										</button>
+									</div>
+									<div id="collapsethree" class="collapse" aria-labelledby="headingthree" data-parent="#faq-accordion">
+										<div class="card-body">
+											<h3>answer</h3>
+											Both the workhand and the company will use our website.
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- faq-accordion - end -->
+
+						<!-- faq-accordion - start -->
+						<div class="col-lg-6 col-md-12 col-sm-12">
+							<div id="faq-accordion2" class="faq-accordion">
+
+								<div class="card">
+									<div class="card-header" id="headingfive">
+										<button class="btn" data-toggle="collapse" data-target="#collapsfive" aria-expanded="true" aria-controls="collapsfive">
+											<span>05.</span> How to register in any event?
+										</button>
+									</div>
+
+									<div id="collapsfive" class="collapse show" aria-labelledby="headingfive" data-parent="#faq-accordion2">
+										<div class="card-body">
+											<h3>answer</h3>
+											First you need to verify that you are a workhand and then in the Event link in the header there is a button called Register and details you can click on that and can register yourself in your choosen event.
+										</div>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header" id="headingsix">
+										<button class="btn collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+											<span>06.</span>What is the procedure after registering in the event?
+										</button>
+									</div>
+									<div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#faq-accordion2">
+										<div class="card-body">
+											<h3>answer</h3>
+											After registering, if you are selected you will be notified with an email.
+										</div>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header" id="headingseven">
+										<button class="btn collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+											<span>07.</span> Can workhand apply in other categories?
+										</button>
+									</div>
+									<div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#faq-accordion2">
+										<div class="card-body">
+											<h3>answer</h3>
+											Yes they can apply in any category which is required in that particular event.
+										</div>
+									</div>
+								</div>
+
+                                <div class="card">
+									<div class="card-header" id="headingseven">
+										<button class="btn collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+											<span>08.</span> Before how much time Registration in event will be closed?
+
+										</button>
+									</div>
+									<div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#faq-accordion2">
+										<div class="card-body">
+											<h3>answer</h3>
+											Registration of the event will be closed before 24 hours of starting of the event.
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<!-- faq-accordion - end -->
+						
+					</div>
+				</div>
+				<!-- faq-content-wrapper - end -->		
+
+			</div>
+		</section>
+		<!-- faq-section - end
+		================================================== -->
+
+{% endblock content %}

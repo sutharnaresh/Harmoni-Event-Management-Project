@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<!-- Mirrored from jthemes.net/themes/html/harmony-event/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Jun 2023 15:25:29 GMT -->
+<head>
+		<!-- jQuery 3.6.3 Path-->
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+		<title>Harmoni - {% block title %}{% endblock title %}</title>
+		<link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}">
+
+		<!-- fraimwork - css include -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+		<!-- icon css include -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/fontawesome-all.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/flaticon.css' %}">
+
+		<!-- carousel css include -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick-theme.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.carousel.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+
+		<!-- others css include -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/magnific-popup.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.mCustomScrollbar.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/calendar.css' %}">
+
+		<!-- color switcher css include -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/colors/style-switcher.css' %}">
+		<link id="color_theme" rel="stylesheet" type="text/css" href="{% static 'assets/css/colors/default.css' %}">
+
+		<!-- custom css include -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/colors/style-switcher.css' %}">
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-GLhlTQ8iN17SJLl/3a7FSF1INDi3ZMEZ9vlyi7i6a6buPc9F8q+Jt9TI2D9zjr6" crossorigin="anonymous">
+        <!-- Bootstrap library-->
+        <link rel="stylesheet" href="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css' %}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+	</head>
+
+
+	<body class="default-header-p" id="body">		
+		<!-- backtotop - start -->
+		<div id="thetop" class="thetop"></div>
+		<div class='backtotop'>
+			<a href="#thetop" class='scroll'>
+				<i class="fas fa-angle-double-up"></i>
+			</a>
+		</div>
+		<!-- backtotop - end -->
+
+		<!-- preloader - start -->
+		<div id="preloader"></div>
+		<!-- preloader - end -->
+
+
+
+
+		<!-- header-section - start
+		================================================== -->
+		<header id="header-section" class="header-section default-header-section auto-hide-header clearfix">
+
+			<!-- header-top - start -->
+			<div class="header-top">
+				<div class="container">
+					<div class="row">
+
+						<!-- basic-contact - start -->
+						<div class="col-lg-6">
+							<div class="basic-contact">
+								<ul>
+									{% if user.is_authenticated %}
+									<li>
+										<a href="#!">
+											<i class="fas fa-envelope"></i>
+											{{user.email}}
+										</a>
+									</li>
+									{% else %}
+									<li>
+										<a href="#!">
+											<i class="fas fa-envelope"></i>
+											info@harmoni.com
+										</a>
+									</li>
+									<li>
+										<a href="#!">
+											<i class="fas fa-phone"></i>
+											100-2222-9999
+										</a>
+									</li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+						<!-- basic-contact - end -->
+
+						<!-- register-login-group - start -->
+						<div class="col-lg-6">
+							<div class="register-login-group">
+								<ul>
+									<li>
+										{% if user.is_authenticated %}
+										<a href="{% url "profile" %}">
+											<i class="fas fa-user"></i>
+											{{user.username}}
+										</a>
+										{% else %}
+										<a href="{% url 'register' %}">
+											<i class="fas fa-user"></i>
+											Register
+										</a>
+										{% endif %}
+									</li>
+									<li>
+										{% if user.is_authenticated %}
+										<a href="#" data-toggle="modal" data-target="#exampleModal">
+											<i class="fas fa-sign-out-alt" data-toggle="modal" data-target="#exampleModalCenter"></i>
+											Logout
+										</a>
+										{% else %}
+										<a href="{% url 'login' %}" >
+											<i class="fas fa-lock"></i>
+											Login
+										</a>
+										{% endif %}
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- register-login-group - end -->
+					</div>
+				</div>
+			</div>
+			<!-- header-top - end -->
+
+			<!-- header-bottom - start -->
+			<div class="header-bottom">
+				<div class="container">
+					<div class="row">
+
+						<!-- site-logo-wrapper - start -->
+						<div class="col-lg-3">
+							<div class="site-logo-wrapper">
+								<a href="{% url 'home' %}" class="logo">
+									<img src="{% static 'assets/images/0.site-logo.png' %}" alt="logo_not_found">
+								</a>
+							</div>
+						</div>
+						<!-- site-logo-wrapper - end -->
+
+						<!-- mainmenu-wrapper - start -->
+						<div class="col-lg-9">
+							<div class="mainmenu-wrapper">
+								<div class="row">
+
+									<!-- menu-item-list - start -->
+									<div class="col-lg-10">
+										<div class="menu-item-list ul-li clearfix">
+											<ul>
+												<li class="menu-item-has-children{% if active == 'home' %} active{% endif %}">
+													<a href="{% url 'index' %}">home</a>
+												</li>
+												<li class="menu-item-has-children{% if active == 'about' %} active{% endif %}">
+													<a href="{% url 'about' %}">about</a>
+													<ul class="sub-menu">
+														<li>
+															<a href="{% url 'FAQ' %}">FAQ</a>
+														</li>
+													</ul>
+												</li>
+												<li class="menu-item-has-children{% if active == 'event' %} active{% endif %}">
+													<a href="{% url 'event' %}">events</a>
+												</li>
+												<li class="menu-item-has-children{% if active == 'vendor' %} active{% endif %}">
+													<a href="{% url 'company' %}">Company</a>
+												</li>
+												<li class="menu-item-has-children{% if active == 'contact' %} active{% endif %}">
+													<a href="{% url 'contact' %}">Contact</a>
+												</li>
+
+												<!-- Company Purpose -->
+												{% if user.is_staff %}
+													<li class="menu-item-has-children{% if active == 'myevent' %} active{% endif %}">
+														<a href="{% url 'myevent' %}">My Events</a>
+													</li>
+												{% else %}
+													<li class="menu-item-has-children{% if active == 'history' %} active{% endif %}">
+														<a href="{% url 'history' %}">History</a>
+													</li>
+												{% endif %} 
+												<!--    -->
+											</ul>
+										</div>
+									</div>
+									<!-- menu-item-list - end -->
+
+									<!-- menu-item-list - start -->
+									<div class="col-lg-2">
+										<div class="user-search-btn-group ul-li clearfix">
+											<ul>
+												<li>
+													{% if user.profile_pics %}
+													<a href="#">
+														 <img src="{{user.profile_pics.image.url}}" class="rounded-circle" style="height: 43px; width: 150px;" ></img>
+													</a>
+													{% else %}
+													<a href="#!">
+														<i class="fas fa-user"></i>
+													</a>
+													{% endif %}
+												</li>
+												<li>
+													<button type="button" class="toggle-overlay search-btn">
+														<i class="fas fa-search"></i>
+													</button>
+													<!-- search-body - start -->
+													<div class="search-body">
+														<div class="search-form">
+															<form action="{% url 'home_search' %}">
+															{% csrf_token %}
+																<input class="search-input" type="search" name="keyword" placeholder="Search Here">
+																<div class="outer-close toggle-overlay">
+																	<button type="button" class="search-close">
+																		<i class="fas fa-times"></i>
+																	</button>
+																</div>
+															</form>
+														</div>
+													</div>
+													<!-- search-body - end -->
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- menu-item-list - end -->
+
+								</div>
+							</div>
+						</div>
+						<!-- mainmenu-wrapper - end -->
+
+					</div>
+				</div>
+			</div>
+			<!-- header-bottom - end -->
+
+		</header>
+		<!-- header-section - end
+		================================================== -->
+            <div class="mobile-search-box d-lg-none">
+                <div class="container">
+                    <!-- mobile search start -->
+                </div>
+            </div>
+        </header>
+
+        <div class="header-altranative">
+			<div class="container">
+				<div class="logo-area float-left">
+					<a href="index-1.html">
+						<img src="{% static 'assets/images/1.site-logo.png' %}" alt="logo_not_found">
+					</a>
+				</div>
+
+				<button type="button" id="sidebarCollapse" class="alt-menu-btn float-right">
+					<i class="fas fa-bars"></i>
+				</button>
+			</div>
+
+			<!-- sidebar menu - start -->
+			<div class="sidebar-menu-wrapper">
+				<div id="sidebar" class="sidebar">
+					<span id="sidebar-dismiss" class="sidebar-dismiss">
+						<i class="fas fa-arrow-left"></i>
+					</span>
+
+					<div class="sidebar-header">
+						<a href="#!">
+							<img src="{% static 'assets/images/2.site-logo.png' %}" alt="logo_not_found">
+						</a>
+					</div>
+
+					<!-- sidebar-form - start -->
+					<div class="sidebar-form">
+						<form action="#">
+							<input id="altmenu-sidebar-search" type="search" placeholder="Search">
+							<label for="altmenu-sidebar-search"><i class="fas fa-search"></i></label>
+						</form>
+					</div>
+					<!-- sidebar-form - end -->
+
+					<!-- main-pages-links - start -->
+					<div class="menu-link-list main-pages-links">
+						<a href="{% url 'index' %}"><h2 class="menu-title">Home pages</h2></a>
+					</div>
+					<!-- main-pages-links - end -->
+
+					<!-- other-pages-links - start -->
+					<div class="menu-link-list other-pages-links">
+						<h2 class="menu-title">all single pages</h2>
+						<ul>
+							<li>
+								<a href="{% url 'home' %}">
+									<span class="icon"><i class="fas fa-home"></i></span>
+									Home
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'about' %}">
+									<span class="icon"><i class="fas fa-home"></i></span>
+									About Us
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'event' %}">
+									<span class="icon"><i class="fas fa-home"></i></span>
+									Events
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'company' %}">
+									<span class="icon"><i class="fas fa-home"></i></span>
+									Company
+								</a>
+							</li>
+							
+							{% if user.is_staff %}
+							<li>
+								<a href="{% url 'myevent' %}">
+									<span class="icon"><i class="fas fa-home"></i></span>
+									My Events
+								</a>
+							</li>
+							{% else %}
+							<li>
+								<a href="{% url 'history' %}">
+									<span class="icon"><i class="fas fa-home"></i></span>
+									History
+								</a>
+							</li>
+							{% endif %}
+
+						</ul>
+					</div>
+					<!-- other-pages-links - end -->
+
+					<!-- login-btn-group - start -->
+					<div class="login-btn-group">
+						<ul>
+
+							<li>
+								{% if user.is_authenticated %}
+								<a href="{% url 'profile' %}">
+									<i class="fas fa-user"></i>
+									{{user.username}}
+								</a>
+								{% else %}
+								<a href="{% url 'register' %}">
+									<i class="fas fa-user"></i>
+									Register
+								</a>
+								{% endif %}
+							</li>
+							<li>
+								{% if user.is_authenticated %}
+								<a href="#" data-toggle="modal" data-target="#exampleModal">
+									<i class="fas fa-lock" data-toggle="modal" data-target="#exampleModalCenter"></i>
+									Logout
+								</a>
+								{% else %}
+								<a href="{% url 'login' %}" >
+									<i class="fas fa-lock"></i>
+									Login
+								</a>
+								{% endif %}
+							</li>
+							
+						</ul>
+					</div>
+					<!-- login-btn-group - end -->
+
+					<!-- social-links - start -->
+					<div class="social-links">
+						<h2 class="menu-title">get in touch</h2>
+						<div class="mb-15">
+							<h3 class="contact-info">
+								<i class="fas fa-phone"></i>
+								100-2222-9999
+							</h3>
+							<h3 class="contact-info">
+								<i class="fas fa-envelope"></i>
+								info@harmoni.com
+							</h3>
+						</div>
+						<ul>
+							<li>
+								<a href="#!"><i class="fab fa-facebook-f"></i></a>
+							</li>
+							<li>
+								<a href="#!"><i class="fab fa-twitter"></i></a>
+							</li>
+							<li>
+								<a href="#!"><i class="fab fa-twitch"></i></a>
+							</li>
+							<li>
+								<a href="#!"><i class="fab fa-google-plus-g"></i></a>
+							</li>
+							<li>
+								<a href="https://www.instagram.com/i_am_nil_patel_/?utm_source=qr&igsh=c25xbHZjaGhwNHk0"><i class="fab fa-instagram"></i></a>
+							</li>
+						</ul>
+						<a href="{% url 'contact' %}" class="contact-btn">contact us</a>
+					</div>
+					<!-- social-links - end -->
+
+					<div class="overlay"></div>
+				</div>
+			</div>
+			<!-- sidebar menu - end -->
+		</div>
+		<!-- altranative-header - end
+		================================================== -->
+
+        {% block content %}
+        {% endblock content %}
+        <!-- footer-section2 - start
+		================================================== -->
+		<footer id="footer-section" class="footer-section footer-section2 clearfix">
+
+			<!-- footer-top - start -->
+			<div class="footer-top sec-ptb-100 clearfix">
+				<div class="container">
+					<div class="row">
+
+						<!-- about-wrapper - start -->
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="about-wrapper">
+
+								<!-- site-logo-wrapper - start -->
+								<div class="site-logo-wrapper mb-30">
+									<a href="{% url 'home' %}" class="logo">
+										<img src="{% static 'assets/images/1.site-logo.png' %}" alt="logo_not_found">
+									</a>
+								</div>
+								<!-- site-logo-wrapper - end -->
+
+								<p class="mb-30">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.
+								</p>
+
+								<!-- basic-info - start -->
+								<div class="basic-info ul-li-block mb-50">
+									<ul>
+										<li>
+											<i class="fas fa-map-marker-alt"></i>
+											100 highland ave, california, united state
+										</li>
+										<li>
+											<i class="fas fa-envelope"></i>
+											<a href="#!">hamoni@gmail.com</a>
+										</li>
+										<li>
+											<i class="fas fa-phone"></i>
+											<a href="#!">100 800 1234 5555</a>
+										</li>
+									</ul>
+								</div>
+								<!-- basic-info - end -->
+
+								<!-- social-links - start -->
+								<div class="social-links ul-li">
+									<h3 class="social-title">network</h3>
+									<ul>
+										<li>
+											<a href="#!"><i class="fab fa-facebook-f"></i></a>
+										</li>
+										<li>
+											<a href="#!"><i class="fab fa-twitter"></i></a>
+										</li>
+										<li>
+											<a href="#!"><i class="fab fa-twitch"></i></a>
+										</li>
+										<li>
+											<a href=""><i class="fab fa-google-plus-g"></i></a>
+										</li>
+										<li>
+											<a href="https://www.instagram.com/i_am_nil_patel_/?utm_source=qr&igsh=c25xbHZjaGhwNHk0"><i class="fab fa-instagram"></i></a>
+										</li>
+									</ul>
+								</div>
+								<!-- social-links - end -->
+								
+							</div>
+						</div>
+						<!-- about-wrapper - end -->
+
+						<!-- usefullinks-wrapper - start -->
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="usefullinks-wrapper ul-li-block">
+								<h3 class="footer-item-title">
+									useful <strong>links</strong>
+								</h3>
+								<ul>
+									<li><a href="{% url 'about' %}">About Harmoni</a></li>
+									<li><a href="{% url 'FAQ' %}">FAQ</a></li>
+									<li><a href="{% url 'contact' %}">Contact us</a></li>
+									<li><a href="{% url 'event' %}">Events Schedule</a></li>
+									<li><a href="{% url 'company' %}">Companies</a></li>
+									<li><a href="{% url 'closed_event' %}">Recently Closed Event</a></li>
+									{% if user.is_authenticated %}
+										{% if request.user.is_staff %}
+										<li><a href="{% url 'myevent' %}">My Events</a></li>
+										{% else %}
+										<li><a href="{% url 'history' %}">History</a></li>
+										{% endif %}
+									{% else %}
+										<li><a href="{% url 'register' %}">Register</a></li>
+										<li><a href="{% url 'login' %}">Login</a></li>
+									{% endif %}
+								</ul>
+								
+							</div>
+						</div>
+						<!-- usefullinks-wrapper - end -->
+
+						<!-- instagram-wrapper - start -->
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="instagram-wrapper ul-li">
+								<h3 class="footer-item-title">
+									harmoni <strong>instagram</strong>
+								</h3>
+								<ul>
+									<li class="image-wrapper">
+										<img src="{% static 'assets/images/footer/instagram/img1.png' %}" alt="Image_not_found">
+										<a href="https://www.instagram.com/i_am_nil_patel_/?utm_source=qr&igsh=c25xbHZjaGhwNHk0"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li class="image-wrapper">
+										<img src="{% static 'assets/images/footer/instagram/img2.png' %}" alt="Image_not_found">
+										<a href="https://www.instagram.com/i_am_nil_patel_/?utm_source=qr&igsh=c25xbHZjaGhwNHk0"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li class="image-wrapper">
+										<img src="{% static 'assets/images/footer/instagram/img3.png' %}" alt="Image_not_found">
+										<a href="https://www.instagram.com/i_am_nil_patel_/?utm_source=qr&igsh=c25xbHZjaGhwNHk0"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li class="image-wrapper">
+										<img src="{% static 'assets/images/footer/instagram/img4.png' %}" alt="Image_not_found">
+										<a href="https://www.instagram.com/i_am_nil_patel_/?utm_source=qr&igsh=c25xbHZjaGhwNHk0"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li class="image-wrapper">
+										<img src="{% static 'assets/images/footer/instagram/img5.png' %}" alt="Image_not_found">
+										<a href="https://www.instagram.com/i_am_nil_patel_/?utm_source=qr&igsh=c25xbHZjaGhwNHk0"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li class="image-wrapper">
+										<img src="{% static 'assets/images/footer/instagram/img6.png' %}" alt="Image_not_found">
+										<a href="https://www.instagram.com/i_am_nil_patel_/?utm_source=qr&igsh=c25xbHZjaGhwNHk0"><i class="fab fa-instagram"></i></a>
+									</li>
+								</ul>
+								<h4 class="followus-link">
+									Follow Our Instagram <a href="#!">#Harmoni</a>
+								</h4>
+							</div>
+						</div>
+						<!-- instagram-wrapper - end -->
+
+					</div>
+				</div>
+			</div>
+			<!-- footer-top - end -->
+
+			<div class="footer-bottom">
+				<div class="container">
+					<div class="row">
+
+						<!-- copyright-text - start -->
+						<div class="col-lg-7 col-md-12 col-sm-12">
+							<div class="copyright-text">
+								<p class="m-0">©2018 <a href="#!" class="site-link">Harmoni.com</a> all right reserved, made with <i class="fas fa-heart"></i> by <a href="#!" class="author-link"><strong>jThemes Studio</strong></a></p>
+							</div>
+						</div>
+						<!-- copyright-text - end -->
+
+						<!-- footer-menu - start -->
+						<div class="col-lg-5 col-md-12 col-sm-12">
+							<div class="footer-menu">
+								<ul>
+									<li><a href="{% url 'contact' %}">Contact us</a></li>
+									<li><a href="{% url 'about' %}">About us</a></li>
+									<li><a href="{% url 'home' %}">Site map</a></li>
+									<li><a href="#!">Privacy policy</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- footer-menu - end -->
+
+					</div>
+				</div>
+			</div>
+
+		</footer>
+		<!-- footer-section2 - end
+		================================================== -->
+
+	
+
+		<!-- Log-out modal start-->
+		
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<strong class="title" id="exampleModalLabel"><i class="fas fa-sign-out-alt text-warning"></i>&nbsp;&nbsp; Logout</strong>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body text-center">
+					{% comment %} <span class="text-warning"><i class="fas fa-sign-out-alt fa-3x mt-4"></i></span> {% endcomment %}
+					<img src="{% static 'assets/images/0.site-logo.png' %}" alt="logo_not_found">
+					<div class="mt-4 text-danger" style="height: 50px;">Are you sure to exit the system ?</div>
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<a href="{% url 'logout' %}" type="button" class="btn btn-danger">Logout</a>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!--Log-out modal end-->
+
+
+
+		
+
+
+
+		<!-- fraimwork - jquery include -->
+		<script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+		<script src="{% static 'assets/js/popper.min.js' %}"></script>
+		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+		<!-- carousel jquery include -->
+		<script src="{% static 'assets/js/slick.min.js' %}"></script>
+		<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+
+		<!-- calendar jquery include -->
+		<script src="{% static 'assets/js/atc.min.js' %}"></script>
+
+		<!-- others jquery include -->
+		<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+		<script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+		<script src="{% static 'assets/js/jarallax.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+		<!-- gallery img loaded - jqury include -->
+		<script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+
+		<!-- multy count down - jqury include -->
+		<script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
+
+		<!-- color panal - jqury include -->
+		<script src="{% static 'assets/js/style-switcher.js' %}"></script>
+
+		<!-- custom jquery include -->
+		<script src="{% static 'assets/js/custom.js' %}"></script>
+
+		<!--Bootstrap jquery-->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+		
+		<!-- Minify Version -->
+		<script src="{% static 'login/js/vendor.min.js' %}"></script>
+		<script src="{% static 'login/js/plugins.min.js' %}"></script>
+		<script src="{% static 'login/js/main.min.js' %}"></script>
+	
+		<!--Main JS (Common Activation Codes)-->
+		<script src="{% static 'login/js/main.js' %}"></script>
+		<script src="{% static 'assets/js/addEvent.js' %}"></script>
+
+	</body>
+
+<!-- Mirrored from jthemes.net/themes/html/harmony-event/index-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Jun 2023 15:24:53 GMT -->
+</html>

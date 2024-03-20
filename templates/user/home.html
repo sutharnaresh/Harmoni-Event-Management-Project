@@ -1,0 +1,572 @@
+{% extends 'user/base.html' %}
+
+{% load static %}
+{% block title %}Event Management{% endblock title %}
+{% block content %}
+
+		<!-- slide-section - start
+		================================================== -->
+		<section id="slide-section" class="slide-section clearfix">
+			<div id="main-carousel1" class="main-carousel1 owl-carousel owl-theme">
+				<div class="item" style="background-image: url('{% static 'assets/images/slider/slider-bg7.jpg' %}');">
+					<div class="overlay-black">
+						<div class="container">
+							<div class="slider-item-content">
+
+								<span class="medium-text">one stop</span>
+								<h1 class="big-text">Event Planner</h1>
+								<small class="small-text">every event should be perfect</small>
+
+								<div class="link-groups">
+									<a href="{% url 'about' %}" class="about-btn custom-btn">about us</a>
+									<a href="{% url 'event' %}" class="start-btn">get started!</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="item" style="background-image: url('{% static 'assets/images/slider/slider-bg5.jpg' %}');">
+					<div class="overlay-black">
+						<div class="container">
+							<div class="slider-item-content">
+
+								<span class="medium-text">one stop</span>
+								<h1 class="big-text">Event Planner</h1>
+								<small class="small-text">every event should be perfect</small>
+
+								<div class="link-groups">
+									<a href="{% url 'about' %}" class="about-btn custom-btn">about us</a>
+									<a href="{% url 'event' %}" class="start-btn">get started!</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="item" style="background-image: url('{% static 'assets/images/slider/slider-bg11.jpg' %}');">
+					<div class="overlay-black">
+						<div class="container">
+							<div class="slider-item-content">
+
+								<span class="medium-text">one stop</span>
+								<h1 class="big-text">Event Planner</h1>
+								<small class="small-text">every event should be perfect</small>
+
+								<div class="link-groups">
+									<a href="{% url 'about' %}" class="about-btn custom-btn">about us</a>
+									<a href="{% url 'event' %}" class="start-btn">get started!</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<!-- slide-section - end
+		================================================== -->
+
+
+
+
+
+		<!-- upcomming-event-section - start
+		================================================== -->
+		<section id="upcomming-event-section" class="upcomming-event-section sec-ptb-100 clearfix">
+			<div class="container">
+
+				<!-- section-title - start -->
+				<div class="section-title text-center mb-50">
+					<small class="sub-title">upcomming events</small>
+					<h2 class="big-title">Latest <strong>Awesome Events</strong></h2>
+				</div>
+				<!-- section-title - end -->
+
+				<!-- upcomming-event-carousel - start -->
+				<div id="upcomming-event-carousel" class="upcomming-event-carousel owl-carousel owl-theme">
+
+					<!-- item - start -->
+					<div class="item">
+						<div class="event-item">
+
+							<div class="event-image">
+								<img src="{% static 'assets/images/upcomming-events/event-1.jpg' %}" alt="Image_not_found">
+								<div class="post-date">
+									<span class="date">26</span>
+									<small class="month">june</small>
+								</div>
+							</div>
+
+							<div class="event-content">
+								<div class="event-title mb-30">
+									<h3 class="title">
+										The Governors Music Festival 2019
+									</h3>
+									<span class="ticket-price yellow-color">Tickets from $52</span>
+								</div>
+								<div class="event-post-meta ul-li-block mb-30">
+									<ul>
+										<li>
+											<span class="icon">
+												<i class="far fa-clock"></i>
+											</span>
+											Start 20:00pm - 22:00pm
+										</li>
+										<li>
+											<span class="icon">
+												<i class="fas fa-map-marker-alt"></i>
+											</span>
+											Manhattan, New York
+										</li>
+									</ul>
+								</div>
+								<a href="#!" class="custom-btn">
+									Aplly Now
+								</a>
+							</div>
+
+						</div>
+					</div>
+					<!-- item - end -->
+
+					<!-- item - start -->
+					<div class="item">
+						<div class="event-item">
+
+							<div class="event-image">
+								<img src="{% static 'assets/images/upcomming-events/event-2.jpg' %}" alt="Image_not_found">
+								<div class="post-date">
+									<span class="date">28</span>
+									<small class="month">aug</small>
+								</div>
+							</div>
+
+							<div class="event-content">
+								<div class="event-title mb-30">
+									<h3 class="title">
+										The Governors Music Festival 2019
+									</h3>
+									<span class="ticket-price yellow-color">Tickets from $52</span>
+								</div>
+								<div class="event-post-meta ul-li-block mb-30">
+									<ul>
+										<li>
+											<span class="icon">
+												<i class="far fa-clock"></i>
+											</span>
+											Start 20:00pm - 22:00pm
+										</li>
+										<li>
+											<span class="icon">
+												<i class="fas fa-map-marker-alt"></i>
+											</span>
+											Manhattan, New York
+										</li>
+									</ul>
+								</div>
+								<a href="#!" class="custom-btn">
+									tickets & details
+								</a>
+							</div>
+
+						</div>
+					</div>
+					<!-- item - end -->
+
+					<!-- item - start -->
+					<div class="item">
+						<div class="event-item">
+
+							<div class="event-image">
+								<img src="{% static 'assets/images/upcomming-events/event-3.jpg' %}" alt="Image_not_found">
+								<div class="post-date">
+									<span class="date">20</span>
+									<small class="month">may</small>
+								</div>
+							</div>
+
+							<div class="event-content">
+								<div class="event-title mb-30">
+									<h3 class="title">
+										The Governors Music Festival 2019
+									</h3>
+									<span class="ticket-price yellow-color">Tickets from $52</span>
+								</div>
+								<div class="event-post-meta ul-li-block mb-30">
+									<ul>
+										<li>
+											<span class="icon">
+												<i class="far fa-clock"></i>
+											</span>
+											Start 20:00pm - 22:00pm
+										</li>
+										<li>
+											<span class="icon">
+												<i class="fas fa-map-marker-alt"></i>
+											</span>
+											Manhattan, New York
+										</li>
+									</ul>
+								</div>
+								<a href="#!" class="custom-btn">
+									tickets & details
+								</a>
+							</div>
+
+						</div>
+					</div>
+					<!-- item - end -->
+
+					<!-- item - start -->
+					<div class="item">
+						<div class="event-item">
+
+							<div class="event-image">
+								<img src="{% static 'assets/images/upcomming-events/event-1.jpg' %}" alt="Image_not_found">
+								<div class="post-date">
+									<span class="date">26</span>
+									<small class="month">june</small>
+								</div>
+							</div>
+
+							<div class="event-content">
+								<div class="event-title mb-30">
+									<h3 class="title">
+										The Governors Music Festival 2019
+									</h3>
+									<span class="ticket-price yellow-color">Tickets from $52</span>
+								</div>
+								<div class="event-post-meta ul-li-block mb-30">
+									<ul>
+										<li>
+											<span class="icon">
+												<i class="far fa-clock"></i>
+											</span>
+											Start 20:00pm - 22:00pm
+										</li>
+										<li>
+											<span class="icon">
+												<i class="fas fa-map-marker-alt"></i>
+											</span>
+											Manhattan, New York
+										</li>
+									</ul>
+								</div>
+								<a href="#!" class="custom-btn">
+									tickets & details
+								</a>
+							</div>
+
+						</div>
+					</div>
+					<!-- item - end -->
+
+				</div>
+				<!-- upcomming-event-carousel - end -->
+
+			</div>
+		</section>
+		<!-- upcomming-event-section - end
+		================================================== -->
+
+
+
+
+
+		<!-- about-section - start
+		================================================== -->
+		<section id="about-section" class="about-section sec-ptb-100 clearfix">
+			<div class="container">
+				<div class="row">
+
+					<!-- section-title - start -->
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="section-title text-left mb-30">
+							<span class="line-style"></span>
+							<small class="sub-title">we are harmoni</small>
+							<h2 class="big-title"><strong>No.1</strong> Events Management</h2>
+							<p class="black-color mb-50">
+								This is going to be an event management website that helps people find events easily and effectively.
+							</p>
+							<a href="{% url 'about' %}" class="custom-btn">
+								about harmoni
+							</a>
+						</div>
+					</div>
+					<!-- section-title - end -->
+
+					<!-- about-item-wrapper - start -->
+					<div class="col-lg-8 col-md-12 col-sm-12">
+						<div class="about-item-wrapper ul-li">
+							<ul>
+
+								<li>
+									<a href="#!" class="about-item">
+										<span class="icon">
+											<i class="flaticon-handshake"></i>
+										</span>
+										<strong class="title">
+											Friendly Team
+										</strong>
+										<small class="sub-title">
+											More than 200 teams
+										</small>
+									</a>
+								</li>
+								<li>
+									<a href="#!" class="about-item">
+										<span class="icon">
+											<i class="flaticon-two-balloons"></i>
+										</span>
+										<strong class="title">
+											perfact venues
+										</strong>
+										<small class="sub-title">
+											perfact venues
+										</small>
+									</a>
+								</li>
+								<li>
+									<a href="#!" class="about-item">
+										<span class="icon">
+											<i class="flaticon-cheers"></i>
+										</span>
+										<strong class="title">
+											Unique Scenario
+										</strong>
+										<small class="sub-title">
+											We thinking out of the box
+										</small>
+									</a>
+								</li>
+
+								<li>
+									<a href="#!" class="about-item">
+										<span class="icon">
+											<i class="flaticon-clown-hat"></i>
+										</span>
+										<strong class="title">
+											Unforgettable Time
+										</strong>
+										<small class="sub-title">
+											We make you perfect event
+										</small>
+									</a>
+								</li>
+								<li>
+									<a href="#!" class="about-item">
+										<span class="icon">
+											<i class="flaticon-speech-bubble"></i>
+										</span>
+										<strong class="title">
+											24/7 Hours Support
+										</strong>
+										<small class="sub-title">
+											Anytime anywhere
+										</small>
+									</a>
+								</li>
+								<li>
+									<a href="#!" class="about-item">
+										<span class="icon">
+											<i class="flaticon-light-bulb"></i>
+										</span>
+										<strong class="title">
+											Briliant Idea
+										</strong>
+										<small class="sub-title">
+											We have million idea
+										</small>
+									</a>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- about-item-wrapper - end -->
+					
+				</div>
+			</div>
+		</section>
+		<!-- about-section - end
+		================================================== -->
+
+
+
+
+
+		<!-- conference-section - start
+		================================================== -->
+		
+		<!-- conference-section - end
+		================================================== -->
+
+
+
+
+
+		<!-- special-offer-section - start
+		================================================== -->
+		<section id="special-offer-section" class="special-offer-section clearfix" style="background-image: url('{% static 'assets/images/special-offer-bg.png' %}');">
+			<div class="container">
+				<div class="row">
+
+					<!-- special-offer-content - start -->
+					<div class="col-lg-9 col-md-12 col-sm-12">
+						<div class="special-offer-content">
+							<h2><strong>30%</strong> Off in June~July for <span>Birthday Events</span></h2>
+							<p class="m-0">
+								Contact us now and we will make your event unique & unforgettable
+							</p>
+						</div>
+					</div>
+					<!-- special-offer-content - end -->
+
+					<!-- event-makeing-btn - start -->
+					<div class="col-lg-3 col-md-12 col-sm-12">
+						<div class="event-makeing-btn">
+							<a href="#!">make an event now</a>
+						</div>
+					</div>
+					<!-- event-makeing-btn - end -->
+
+				</div>
+			</div>
+		</section>
+		<!-- special-offer-section - end
+		================================================== -->
+
+
+
+
+
+		<!-- event-section - start
+		================================================== -->
+		<section id="event-section" class="event-section sec-ptb-100 bg-gray-light clearfix">
+			<div class="container">
+
+				<div class="mb-50">
+					<div class="row">
+
+						<!-- section-title - start -->
+						<div class="col-lg-3 col-md-12 col-sm-12">
+							<div class="section-title text-left">
+								<span class="line-style"></span>
+								<small class="sub-title">harmoni events</small>
+								<h2 class="big-title"><strong>event</strong> listing</h2>
+							</div>
+						</div>
+						<!-- section-title - end -->
+
+						<!-- event-tab-menu - start -->
+						{% comment %} <div class="col-lg-8 col-md-12 col-sm-12">
+							<div class="event-tab-menu clearfix">
+								<ul class="nav">
+									<li>
+										<a class="active" data-toggle="tab" href="#conference-event">
+											<strong><i class="fas fa-microphone"></i> conference</strong> event
+										</a>
+									</li>
+									<li>
+										<a data-toggle="tab" href="#playground-event">
+											<strong><i class="fas fa-birthday-cake"></i> play ground</strong> event
+										</a>
+									</li>
+									<li>
+										<a data-toggle="tab" href="#musical-event">
+											<strong><i class="fas fa-music"></i> musical</strong> event
+										</a>
+									</li>
+									<li>
+										<a data-toggle="tab" href="#other-event">
+											<strong><i class="far fa-check-square"></i> other</strong> event
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div> {% endcomment %}
+						<!-- event-tab-menu - end -->
+
+					</div>
+				</div>
+
+				<!-- tab-content - start -->
+				<div class="tab-content">
+
+					<!-- musical-event - start -->
+					<div id="musical-event" class="tab-pane fade in active show">
+						<div class="row">
+							{% for i in events %}
+							<!-- event-item - start -->
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="event-item clearfix">
+									<form action="/event-details/{{i.slug}}" method='POST'>
+									{% csrf_token %}
+									<!-- event-image - start -->
+									<div class="event-image" style="width:140px; height:140px;">
+										{% comment %} <div class="post-date">
+											<span class="date">26</span>
+											<small class="month">june</small>
+										</div> {% endcomment %}
+										<img src="{{i.company_id.companyLogo_path.url}}" alt="Image_not_found">
+									</div>
+									<!-- event-image - end -->
+									<!--  style="width:59%; height:53%; style="left:-39%;"  -->
+									<!-- event-content - start -->
+									<div class="event-content">
+										<div class="event-title mb-15">
+											<h3 class="title">
+												{{i.event_name | truncatechars:100}}
+											</h3>
+											<span class="ticket-price yellow-color icon">
+											<i class="fas fa-map-marker-alt"></i> {{i.city_id}},{{i.state_id}}</span>
+										</div>
+										<div class="event-post-meta ul-li-block mb-30">
+											<ul style="left:-39%;">
+												<li>
+													<span class="icon">
+														<i class="far fa-clock"></i>
+													</span>
+													Start ; {{i.start_datetime}}
+												</li>
+												<li>
+													<span class="icon">
+														<i class="fas fa-ticket-alt"></i>
+													</span>
+													Max {{i.total_workhand}} seats
+												</li>
+											</ul>
+										</div>
+										<button type="submit" class="tickets-details-btn">
+											Register & Details
+										</button>
+									</div>
+									<!-- event-content - end -->
+									</form>
+								</div>
+							</div>
+							<!-- event-item - end -->
+							{% endfor %}
+
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								
+									<center><a href="{% url 'event' %}" class="custom-btn">See More Events</a></center>
+								
+							</div>
+
+						</div>
+					</div>
+					<!-- musical-event - end -->
+				</div>
+				<!-- tab-content - end -->
+
+			</div>
+		</section>
+		<!-- event-section - end
+		================================================== -->
+
+
+
+		{% endblock content %}
+		

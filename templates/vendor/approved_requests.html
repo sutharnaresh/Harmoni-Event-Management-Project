@@ -1,0 +1,259 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}Approved - Requests{% endblock title %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% block content %}
+
+	
+<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url({% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %});">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">Harmoni</span>
+									<h2 class="big-title">Approved <strong>Requests</strong></h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="{% url 'index' %}" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item active" aria-current="page">{{event.event_name|truncatewords:5}}</li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+
+
+		<!-- booking-section - start
+		================================================== -->
+		<section id="booking-section" class="booking-section bg-gray-light sec-ptb-100 clearfix">
+			<div class="container">
+				<div class="row">
+
+					<!-- booking-content-wrapper - start -->
+					<div class="col-lg-8 col-md-12 col-sm-12">
+						<div class="booking-content-wrapper">
+
+							<!-- order-summary - start -->
+							<div class="order-summary mb-50">
+								<!-- section-title - start -->
+								<div class="section-title mb-30">
+									<h2 class="big-title">Workhand <strong>Details</strong></h2>
+								</div>
+{% comment %} 								
+								<div class="section-title" style="margin-right:200px;">
+									
+								</div> {% endcomment %}
+                                
+								<!-- section-title - end -->
+								<div class="order-summary-table table-responsive">
+									{% if event.company_id.User_id == request.user %}
+                                    {% comment %} <form action="{% url 'request_approve'%}" method="POST">
+                                    {% csrf_token %} {% endcomment %}
+                                    <form action="{% url 'approved_requests' slug=event.slug %}" method="POST">
+                                    {% csrf_token %}
+									<table class="table text-center">
+										<thead>
+											<tr>
+												<th scope="col">Workhand's Name</th>
+												<th scope="col">Rate</th>
+												<th scope="col">Category</th>
+												<th scope="col">Requests</th>
+											</tr>
+										</thead>										
+                                        <tbody>
+                                        {% for i in  workhands_Requests %}
+                                            <tr class="bg-gray-light">
+                                                <td><a href="/workhands-requests/workhand-profile/{{i.workhand_id.slug}}">{{i.workhand_id}}</a></td>
+												<td>
+												<div class="small-ratings">
+												{% for star in '12345' %}
+													{% if i.workhand_id.avg_rating >= forloop.counter0|add:1 %}
+														<i class="fa fa-star" style="color:#fbc634 !important;"></i>
+													{% else %}
+														<i class="fa fa-star"></i>
+													{% endif %}
+												{% endfor %}
+												</div>
+                                                <td>{{i.event_workhand_id}}
+                                                <td>
+                                                <input name="Registeration_id" value="{{i.id}}" hidden />
+                                                <button type="submit" class="btn btn-danger p-0" style="width:75px;">Cancel</button>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>	
+									</table>
+                                    </form>
+                                    {% comment %} </form>	 {% endcomment %}
+                                    {% endif %}
+								</div>
+							</div>
+							<!-- order-summary - end -->
+
+
+
+						<div>
+							<!-- reg-info - start -->
+							<div class="reg-info mb-10">
+
+								<!-- section-title - start -->
+								<!-- <div class="section-title mb-30">
+									<h2 class="big-title">registration <strong>information</strong></h2>
+								</div> -->
+								<!-- section-title - end -->
+
+								<!-- row - start -->
+								<div class="row">
+									<!-- billing-info - start -->
+							<div class="reg-info mb-50">
+
+								<!-- section-title - start -->
+								<!--<div class="section-title mb-30">
+									<h2 class="big-title">billing <strong>information</strong></h2>
+								</div>-->
+								<!-- section-title - end -->
+
+							</div>
+							<!-- billing-info - end -->
+							</div>
+						
+								</div>
+								<!-- row - end -->
+
+							</div>
+							<!-- reg-info - end -->
+
+
+
+							<!-- billing-info - start -->
+							<div class="billing-info mb-50">
+
+								
+								<div class="billing-form form-wrapper">
+								
+								</div>
+								<!-- billing-form - end -->
+
+							</div>
+							<!-- billing-info - end -->
+							
+						</div>
+					</div>
+					<!-- booking-content-wrapper - end -->
+
+					<!-- sidebar-section - start -->
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="sidebar-section">
+
+							<!-- section-title - start -->
+							<div class="section-title mb-30">
+								<h2 class="big-title">event <strong>info</strong></h2>
+							</div>
+							<!-- section-title - end -->
+
+							<!-- location-wrapper - start -->
+							<div class="location-wrapper bg-white">
+
+								<div class="title-wrapper">
+									<small class="up-arrow-icon">
+										<i class="fas fa-chevron-circle-up"></i>
+									</small>
+									<span class="icon">
+										<i class="fas fa-map-marker-alt"></i>
+									</span>
+									<div class="title-content">
+										<small>event location</small>
+										<h3>{{event.city_id}} , {{event.state_id}}</h3>
+									</div>
+								</div>
+								<div class="location-info-list ul-li-block clearfix">
+									<span class="area-name">{{event.company_id}}</span>
+									<ul>
+										<li><i class="fas fa-arrow-circle-right"></i> Category : <strong>{{event.event_subcategory_id}}</strong></li>
+										<li><i class="fas fa-arrow-circle-right"></i> {{event.start_datetime | date}}</li>
+										<li><i class="fas fa-arrow-circle-right"></i> Total Seat : <strong>{{event.total_workhand}}</strong></li>
+										<li><i class="fas fa-arrow-circle-right"></i> From <strong>{{event.start_datetime | time}}</strong> to <strong>{{event.end_datetime | time}}</strong> (IND)</li>
+									</ul>
+								</div>
+								{% comment %} <div class="button">
+									<a href="#!" class="custom-btn">ADD TO MY CALENDAR</a>
+								</div> {% endcomment %}
+								<div class="title-wrapper">
+									<small class="up-arrow-icon">
+										<i class="fas fa-chevron-circle-up"></i>
+									</small>
+									<span class="icon">
+										<i class="fas fa-link"></i>
+									</span>
+									<div class="title-content">
+										<small>contact information</small>
+										<h3>harmoni staff</h3>
+									</div>
+								</div>
+								<div class="contact-links ul-li-block clearfix">
+									<p class="black-color mb-30">
+										Fusce pellentesque velvitae tincidunt egestas. Pellentesque habitant. Proin gravida nibh vel velit auctor aliquet. sollicitudin, lorem quis more...
+									</p>
+									<ul>
+										<li>
+											<a href="#!" target="_blank">
+												<span class="icon">
+													<i class="fab fa-facebook-f"></i>
+												</span>
+												facebook.com/harmoni
+											</a>
+										</li>
+										<li>
+											<a href="#!" target="_blank">
+												<span class="icon">
+													<i class="fab fa-twitter"></i>
+												</span>
+												twitter.com@harmoni
+											</a>
+										</li>
+										<li>
+											<a href="#!" target="_blank">
+												<span class="icon">
+													<i class="fas fa-link"></i>
+												</span>
+												http://www.harmoni.com
+											</a>
+										</li>
+									</ul>   
+									<a href="{% url 'contact' %}" class="custom-btn">CONTACT US NOW</a>
+								</div>
+							</div>
+							<!-- location-wrapper - end -->
+							
+						</div>
+					</div>
+					<!-- sidebar-section - end -->
+					
+				</div>
+			</div>
+		</section>
+		<!-- booking-section - end
+		================================================== -->
+
+		{% comment %} <button id="rzp-button1">Pay with Razorpay</button> {% endcomment %}
+		<!-- rating.js file -->
+		<script src="js/addons/rating.js"></script>
+{% endblock content%}

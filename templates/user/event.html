@@ -1,0 +1,283 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}Events{% endblock title %}
+{% block content %}
+
+{% if messages %}
+ {% for message in messages %}
+	<script>
+		alert('{{ message }}');
+	</script>
+ {% endfor %}
+{% endif %}
+
+<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url('{% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %}');">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">harmoni events</span>
+									<h2 class="big-title">harmoni <strong>event</strong></h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="{% url 'index' %}" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item active" aria-current="page">event listing</li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+		<section id="event-search-section" class="event-search-section clearfix" style="background-image: url('{% static 'assets/images/special-offer-bg.png' %}');">
+			<div class="container">
+				<div class="row">
+
+					<!-- section-title - start -->
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="section-title">
+							<small class="sub-title">Find best event on Harmoni</small>
+							<h2 class="big-title">event <strong>Search</strong></h2>
+						</div>
+					</div>
+					<!-- section-title - end -->
+
+					<!-- search-form - start -->
+					<div class="col-lg-8 col-md-12 col-sm-12">
+						<div class="search-form form-wrapper">
+							<form action="{% url 'search_event' %}" method="POST">
+								{% csrf_token %}
+								<ul>
+									<li>
+										<span class="title">event keyword</span>
+										<div class="form-item">
+											<input type="search" name="keyword" placeholder="Search Event...">
+										</div>
+									</li>
+									<li>
+										<span class="title">event category</span>
+										<select id="event-category-select" name="search">
+										{% for i in Event_subcategory %}
+											<option value="{{i.id}}" selected>{{i.Event_subcategory_name}}</option>
+										{% endfor %}
+										<option value="all" selected>All Events</option>
+										</select>
+									</li>
+									<li>
+										<button type="submit" class="submit-btn">search event now</button>
+									</li>
+								</ul>
+								
+							</form>
+						</div>
+					</div>
+					<!-- search-form - end -->
+					
+				</div>
+			</div>
+		</section>
+		<!-- event-search-section - end
+		================================================== -->
+
+
+
+
+
+		<!-- event-section - start
+		================================================== -->
+		<section id="event-section" class="event-section bg-gray-light sec-ptb-100 clearfix">
+			<div class="container">
+				<div class="row justify-content-center">
+
+					<!-- - start -->
+					<div class="col-lg-10 col-md-12 col-sm-12">
+
+						<div class="search-result-form">
+							<form action="#!">
+								<ul>
+
+									<li>
+										<span class="result-text">{{event_count}} Search results from {{total_event}} events</span>
+									</li>
+								</ul>
+							</form>
+						</div>
+						<div class="tab-content">
+							<div id="list-style" class="tab-pane fade in active show"> 	
+								<!-- event-item - start -->
+								{% if events %}
+									{% for i in events %}
+										{% now "Y-m-d H:i:s" as today %}
+										{% with event_start_date=i.start_datetime|date:"Y-m-d H:i:s" %}
+											{% if event_start_date > today %}
+									
+											<form action="/event-details/{{i.slug}}" method='POST'>
+											{% csrf_token %}
+											<div class="event-list-item clearfix1">
+
+												<!-- event-image - start -->
+												<div class="event-image" style="padding-left:-10%;width: 250px;margin-right: -10;margin-right:-30;margin-right: -100px;">
+													
+													<img src="{{i.company_id.companyLogo_path.url}}" alt="Image_not_found" style="width:40%;height:40%" loading="lazy">
+												</div>
+												<!-- event-image - end -->
+
+												<!-- event-content - start -->
+												<div class="event-content">
+													<div class="event-title mb-15">
+														<h3 class="title">
+															{{i.company_id.name}}'s <br> <strong>{{i.event_name}}</strong>
+														</h3>
+														<i class="fas fa-map-marker-alt"></i>
+														<span class="ticket-price yellow-color">Location - {{i.city_id}} , {{i.state_id}}</span>
+														{% comment %} <span class="ticket-price yellow-color">Total Price Pool ₹{{i.total_price}}</span> {% endcomment %}
+													</div>
+													<p class="discription-text mb-20 info-content">
+														<h4><strong> Needed Category : </strong>
+														
+														{% for workhand in Event_Workhand %}	
+															{% if workhand.event_id.id == i.id %}
+																<small class="info-content">{{workhand.Workhand_category_id}}</small>
+																{% if not forloop.last %},{% endif %}
+															{% endif %}
+														{% endfor %}
+															
+														</h4>
+													</p>
+													<div class="event-info-list ul-li clearfix">
+														<ul>
+															<li style="padding-right:5%;">
+																<span class="icon">
+																	<i class="far fa-clock"></i>
+																</span>
+																<div class="info-content">
+																	<small>Date</small>
+																	<h3>{{i.start_datetime | date}}</h3>
+																</div>
+															</li>
+															{% comment %} <li>
+																<span class="icon">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="42" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16" >
+																			<path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"/>
+																	</svg>
+																</span>
+																<div class="info-content">
+																	<small>Price Pool</small>
+																	<h3>{{i.total_price}}</h3>
+																</div>
+															</li> {% endcomment %}
+															<li style="padding-right:18px;">
+																<span class="icon">
+																	<i class="fas fa-ticket-alt"></i>
+																</span>
+																<div class="info-content">
+																	<small>Max Seats</small>
+																	<h3>{{i.total_workhand}} seats</h3>
+																</div>
+															</li>
+															<li>
+																<button href="" type="submit" class="tickets-details-btn">
+																	Register & details
+																</button>
+															</li>
+														</ul>
+													</div>
+												</div>
+												<!-- event-content - end -->
+
+											</div>
+											</form>
+									<!-- event-item - end -->
+											{% endif %}
+										{% endwith %}
+									{% endfor %}
+								{% else %}
+									<section id="error-section" class="error-section sec-ptb-100 bg-gray-light clearfix">
+									<div class="container">
+										<div class="row justify-content-center">
+
+											<!-- error-content - start -->
+											<div class="col-lg-4 col-md-6 col-sm-12">
+												
+													<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-calendar-x" viewBox="0 0 16 16">
+  <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708"/>
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+</svg>
+												
+											</div>
+											<!-- error-content - end -->
+
+											<!-- error-content - start -->
+											<div class="col-lg-6 col-md-6 col-sm-12">
+												<div class="error-content">
+													<h2>Oops!</h2>
+													<h3>Event Not Found!!</h3>
+													<p class="mb-30">something was wrong. The event you searched is not available at this point !!</p>
+													<a href="{% url "event" %}" class="custom-btn">go back to Event</a>
+												</div>
+											</div>
+											<!-- error-content - end -->
+											
+										</div>
+									</div>
+								</section>
+								{% endif %}
+								
+
+								<div class="pagination ul-li clearfix">
+									<ul>
+										{% if events.has_previous %}
+										<li class="page-item prev-item">
+											<a class="page-link" href="/event/?page={{events.previous_page_number}}">Prev</a>
+										</li>
+										{% endif %}
+
+										{% for n in totalPageList %}
+											{% if n == currentPage %}
+												<li class="page-item active"><a class="page-link" href="/event/?page={{n}}">{{n}}</a></li>
+											{% else %}
+												<li class="page-item"><a class="page-link" href="/event/?page={{n}}">{{n}}</a></li>
+											{% endif %}
+										{% endfor %}
+										
+										{% if events.has_next %}
+										<li class="page-item next-item">
+											<a class="page-link" href="/event/?page={{events.next_page_number}}">Next</a>
+										</li>
+										{% endif %}
+									</ul>
+								</div>
+								<br><br>
+								<div>
+									<center><a href="{% url 'closed_event' %}" type="submit" class="custom-btn">Recently Closed Event</a></center>
+									</div>
+							</div>
+
+						</div>
+
+					</div>
+					<!-- - end -->
+				</div>
+			</div>
+		</section>
+		<!-- event-section - end
+		================================================== -->
+
+
+{% endblock content %}
+

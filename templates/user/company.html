@@ -1,0 +1,113 @@
+{% extends 'user/base.html' %}
+
+{% load static %}
+{% block title %}Company{% endblock title %}
+{% block content %}
+<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url('{% static 'assets/images/breadcrumb/0.breadcrumb-bg.jpg' %}');">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">harmoni events</span>
+									<h2 class="big-title">harmoni <strong>Events Companies</strong></h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="index-1.html" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Companies</li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+
+		<!-- event-section - start
+		================================================== -->
+		<section id="event-section" class="event-section bg-gray-light sec-ptb-100 clearfix">
+			<div class="container">
+				<div class="row justify-content-center">
+
+					<!-- - start -->
+					<div class="col-lg-9 col-md-12 col-sm-12">
+							<div class="section-title mb-50">
+					<h5 class="big-title">Meet Our <strong><a style="color:#FFBE30;" disabled >Harmoni </strong></a> vendors</h5>
+					</div>
+						<div class="tab-content">
+							<div id="list-style" class="tab-pane fade in active show">
+								{% for i in company %}
+								<form action="{% url 'company_profile' slug=i.slug%}" method="POST">
+								{% csrf_token %}
+								<!-- event-item - start -->
+								<div class="event-list-item clearfix">
+
+									<!-- event-image - start -->
+									<div class="event-image"  style="left:-8px; padding-left:-13%;width: 250px;margin-right: -10;margin-right:-30;margin-right: -100px;">
+										<img src="{{i.companyLogo_path.url}}" alt="Image_not_found">
+									</div>
+									<!-- event-image - end -->
+
+									<!-- event-content - start -->
+									<div class="event-content">
+										<div class="event-title mb-15">
+											<h3 class="title">
+												 <strong>{{i.name}}</strong>
+											</h3>
+											<i class="fas fa-map-marker-alt"></i>
+											<span class="ticket-price yellow-color">Location - {{i.city_id}} , {{i.state_id}}</span>
+										</div>
+										<p class="discription-text mb-30">
+											{{i.description | truncatechars:200}}
+										</p>
+										<div class="event-info-list ul-li clearfix">
+											<ul>
+												<li>
+													<button href="#!" type="submit" class="tickets-details-btn">
+															View Company Details
+													</button>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- event-content - end -->
+
+								</div>
+								<!-- event-item - end -->
+								</form>
+								{% endfor %}
+
+							</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- - end -->
+					
+				</div>
+			</div>
+		</section>
+		<!-- event-section - end
+		================================================== -->
+
+
+
+		
+
+{% endblock content %}
